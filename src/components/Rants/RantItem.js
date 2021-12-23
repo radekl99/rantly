@@ -20,8 +20,8 @@ const RantItem = (props) => {
 
   let isRantLiked = false;
 
-  if (userData.likedRants) {
-    isRantLiked = userData.likedRants.includes(rantData.rantId);
+  if (rantData.likes) {
+    isRantLiked = rantData.likes.includes(userData.userId);
   }
 
   const likeRantChangeHandler = () => {
@@ -66,7 +66,7 @@ const RantItem = (props) => {
 
             <FontAwesomeIcon icon={faAngry} className={classes["angry-icon"]} />
           </label>
-          <div className={classes.likes}>{rantData.likes || "0"}</div>
+          <div className={classes.likes}>{rantData.likes?.length || "0"}</div>
         </div>
         <div className={classes["comment-container"]}>
           <button

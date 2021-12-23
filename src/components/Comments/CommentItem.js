@@ -4,6 +4,7 @@ import { faAngry } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useContext } from "react";
+import { useHistory } from "react-router";
 import AuthContext from "../../context/auth-context";
 
 const CommentItem = (props) => {
@@ -13,6 +14,8 @@ const CommentItem = (props) => {
 
   const authCtx = useContext(AuthContext);
 
+  const history = useHistory();
+
   const { comment, likes, rantId, commentId } = props.commentData;
 
   const commentAuthor = users.find(
@@ -21,10 +24,8 @@ const CommentItem = (props) => {
 
   let isCommentLiked = false;
 
-  if (userData.likedComments) {
-    isCommentLiked = userData.likedComments.includes(
-      props.commentData.commentId
-    );
+  if (likes) {
+    isCommentLiked = likes.includes(userData.userId);
   }
 
   const likeCommentChangeHandler = () => {
@@ -36,24 +37,26 @@ const CommentItem = (props) => {
     }
   };
 
+  const goToUserProfile = () => {
+    history.push(`/profile/${props.commentData.userId}`);
+  };
+
   const angryIcon = authCtx.angryIcon;
 
   return (
     <li className={classes["comment-item"]}>
-      <div className={classes["comment-container"]}>
-        <div className={classes["user-data"]}>
-          <img
-            src={
-              commentAuthor && commentAuthor.photoURL
-                ? commentAuthor.photoURL
-                : angryIcon
-            }
-            alt={commentAuthor ? commentAuthor.username : ""}
-          />
-          <h2>{commentAuthor ? commentAuthor.username : ""}</h2>
-        </div>
-        <p className={classes.comment}>{comment}</p>
+      <div className={classes["user-data"]} onClick={goToUserProfile}>
+        <img
+          src={
+            commentAuthor && commentAuthor.photoURL
+              ? commentAuthor.photoURL
+              : angryIcon
+          }
+          alt={commentAuthor ? commentAuthor.username : ""}
+        />
+        <h2>{commentAuthor ? commentAuthor.username : ""}</h2>
       </div>
+      <p className={classes.comment}>{comment}</p>
       <div className={classes["like-container"]}>
         <label className={classes["like-comment-button"]}>
           <input
@@ -64,7 +67,7 @@ const CommentItem = (props) => {
 
           <FontAwesomeIcon icon={faAngry} className={classes["angry-icon"]} />
         </label>
-        <div className={classes.likes}>{likes}</div>
+        <div className={classes.likes}>{likes?.length || "0"}</div>
       </div>
     </li>
   );
