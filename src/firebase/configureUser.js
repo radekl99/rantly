@@ -32,16 +32,15 @@ export const configureUsers = async () => {
     await set(ref(database, "users"), newUsersList);
   }
   if (userDataExists) {
-    const { follows, followers, likedRants, likedComments, about, photoURL } =
-      users.find((user) => user.userId === auth.currentUser.uid);
+    const { follows, followers, about, photoURL } = users.find(
+      (user) => user.userId === auth.currentUser.uid
+    );
     userData = {
       username,
       userId,
       photoURL: photoURL || "",
       follows: follows || [],
       followers: followers || [],
-      likedRants: likedRants || [],
-      likedComments: likedComments || [],
       about: about || "",
     };
   }

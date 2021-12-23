@@ -1,8 +1,8 @@
 .comment-item {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 0.5rem;
+  justify-content: space-between;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   padding: 1rem 0.5rem;
@@ -12,6 +12,7 @@
 .user-data {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .user-data img {
@@ -29,6 +30,8 @@
 .comment {
   text-align: start;
   font-family: "Roboto", sans-serif;
+  overflow-wrap: break-word;
+  flex: 1;
 }
 
 .like-comment-button {
@@ -51,10 +54,9 @@
 
 .like-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.25rem;
   align-items: center;
-  justify-content: center;
 }
 
 .likes {

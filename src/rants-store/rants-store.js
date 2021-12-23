@@ -105,7 +105,7 @@ const rantsReducer = (state = initialState, action) => {
         userId: state.userData.userId,
         comments: [],
         rantId: uniqid("rant-"),
-        likes: 0,
+        likes: [],
       };
 
       const newRantsList = [...state.rants];
@@ -114,42 +114,34 @@ const rantsReducer = (state = initialState, action) => {
       return { ...state, rants: newRantsList };
     }
     case "LIKE_RANT": {
-      const newLikes = state.userData.likedRants.concat(action.payload);
-      const newUserData = { ...state.userData, likedRants: newLikes };
-
       const newRantsList = [...state.rants];
-      newRantsList.find((rant) => rant.rantId === action.payload).likes++;
-
-      const newUsers = [...state.users];
-      const userIndex = state.users.findIndex(
-        (user) => user.userId === state.userData.userId
+      const likedRant = newRantsList.find(
+        (rant) => rant.rantId === action.payload
       );
-      newUsers[userIndex] = newUserData;
+
+      if (!likedRant.likes) {
+        likedRant["likes"] = [state.userData.userId];
+      } else {
+        likedRant.likes.push(state.userData.userId);
+      }
 
       postRants(newRantsList);
-      updateUsers(newUsers);
 
-      return { ...state, rants: newRantsList, userData: newUserData };
+      return { ...state, rants: newRantsList };
     }
     case "UNLIKE_RANT": {
-      const newLikes = state.userData.likedRants.filter(
-        (id) => id !== action.payload
-      );
-      const newUserData = { ...state.userData, likedRants: newLikes };
-
       const newRantsList = [...state.rants];
-      newRantsList.find((rant) => rant.rantId === action.payload).likes--;
-
-      const newUsers = [...state.users];
-      const userIndex = state.users.findIndex(
-        (user) => user.userId === state.userData.userId
+      const unlikedRant = newRantsList.find(
+        (rant) => rant.rantId === action.payload
       );
-      newUsers[userIndex] = newUserData;
+
+      unlikedRant.likes = unlikedRant.likes.filter(
+        (like) => like !== state.userData.userId
+      );
 
       postRants(newRantsList);
-      updateUsers(newUsers);
 
-      return { ...state, rants: newRantsList, userData: newUserData };
+      return { ...state, rants: newRantsList };
     }
     case "ADD_COMMENT": {
       const commentedRantIndex = state.rants.findIndex(
@@ -163,7 +155,7 @@ const rantsReducer = (state = initialState, action) => {
         userId: state.userData.userId,
         comment,
         commentId: uniqid("comment-"),
-        likes: 0,
+        likes: [],
       });
 
       postRants(newRants);
@@ -171,60 +163,40 @@ const rantsReducer = (state = initialState, action) => {
       return { ...state, rants: newRants };
     }
     case "LIKE_COMMENT": {
-      const newLikedComments = state.userData.likedComments.concat(
-        action.payload.commentId
-      );
-      const newUserData = {
-        ...state.userData,
-        likedComments: newLikedComments,
-      };
-
       const newRantsList = [...state.rants];
 
-      newRantsList
+      const likedComment = newRantsList
         .find((rant) => rant.rantId === action.payload.rantId)
         .comments.find(
           (comment) => comment.commentId === action.payload.commentId
-        ).likes++;
+        );
 
-      const newUsers = [...state.users];
-      const userIndex = state.users.findIndex(
-        (user) => user.userId === state.userData.userId
-      );
-      newUsers[userIndex] = newUserData;
+      if (!likedComment.likes) {
+        likedComment["likes"] = [state.userData.userId];
+      } else {
+        likedComment.likes.push(state.userData.userId);
+      }
 
       postRants(newRantsList);
-      updateUsers(newUsers);
 
-      return { ...state, rants: newRantsList, userData: newUserData };
+      return { ...state, rants: newRantsList };
     }
     case "UNLIKE_COMMENT": {
-      const newLikedComments = state.userData.likedComments.filter(
-        (id) => id !== action.payload.commentId
-      );
-      const newUserData = {
-        ...state.userData,
-        likedComments: newLikedComments,
-      };
-
       const newRantsList = [...state.rants];
 
-      newRantsList
+      const unlikedComment = newRantsList
         .find((rant) => rant.rantId === action.payload.rantId)
         .comments.find(
           (comment) => comment.commentId === action.payload.commentId
-        ).likes--;
+        );
 
-      const newUsers = [...state.users];
-      const userIndex = state.users.findIndex(
-        (user) => user.userId === state.userData.userId
+      unlikedComment.likes = unlikedComment.likes.filter(
+        (like) => like !== state.userData.userId
       );
-      newUsers[userIndex] = newUserData;
 
       postRants(newRantsList);
-      updateUsers(newUsers);
 
-      return { ...state, rants: newRantsList, userData: newUserData };
+      return { ...state, rants: newRantsList };
     }
     case "SET_RANTS": {
       const newRants = action.payload.rants;
