@@ -1,0 +1,57 @@
+.home {
+  width: 100vw;
+  min-height: calc(100vh - 4.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  font-size: 4rem;
+  color: var(--main-color);
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.description h1 {
+  color: var(--main-color);
+  font-size: 4rem;
+}
+
+.description h2 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.description span {
+  color: var(--main-color);
+}
+
+.image {
+  width: 10rem;
+}
+
+.join-button {
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  color: var(--main-color);
+  font-weight: bold;
+  font-size: 1.5rem;
+  border: 0.2rem solid var(--main-color);
+  padding: 0.7rem 1.5rem;
+  transition: 0.1s;
+}
+
+.join-button:hover,
+.join-button:active {
+  color: white;
+  background-color: var(--main-color);
+}

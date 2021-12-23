@@ -1,0 +1,76 @@
+.rant-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 1rem 0.5rem;
+  width: 100%;
+}
+
+.user-data {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-data img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+}
+
+.user-data h2 {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin-left: 0.5rem;
+}
+
+.rant {
+  font-family: "Roboto", sans-serif;
+}
+
+.buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.like-rant-button {
+  display: flex;
+}
+
+.like-rant-button input {
+  -webkit-appearance: none;
+}
+
+.angry-icon,
+.comment-icon {
+  font-size: 1.25rem;
+  color: #797e81;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.like-rant-button input:checked ~ .angry-icon {
+  color: var(--main-color);
+}
+
+.comment-button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.like-container,
+.comment-container {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.likes,
+.comments {
+  display: flex;
+  color: #797e81;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+}

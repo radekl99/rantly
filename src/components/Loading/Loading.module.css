@@ -1,0 +1,9 @@
+.loading-page {
+  width: 100%;
+  min-height: calc(100vh - 4.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  background-color: white;
+}

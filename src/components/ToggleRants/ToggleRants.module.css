@@ -1,0 +1,22 @@
+.toggle-rants {
+  display: flex;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  border: 0.2rem solid var(--main-color);
+}
+
+.button-appearance {
+  padding: 0.5rem 1rem;
+  color: var(--main-color);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.toggle-rants input {
+  display: none;
+}
+
+.button-checked {
+  background-color: var(--main-color);
+  color: white;
+}

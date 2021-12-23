@@ -1,0 +1,10 @@
+SIGN UP
+
+auth/email-already-in-use
+auth/invalid-email
+auth/missing-email
+auth/weak-password
+
+SIGN IN 
+
+auth/wrong-password

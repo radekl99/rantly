@@ -1,0 +1,65 @@
+.comment-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.5rem;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 1rem 0.5rem;
+  width: 100%;
+}
+
+.user-data {
+  display: flex;
+  align-items: center;
+}
+
+.user-data img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+}
+
+.user-data h2 {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin-left: 0.5rem;
+}
+
+.comment {
+  text-align: start;
+  font-family: "Roboto", sans-serif;
+}
+
+.like-comment-button {
+  display: flex;
+}
+
+.like-comment-button input {
+  -webkit-appearance: none;
+}
+
+.angry-icon {
+  font-size: 1.25rem;
+  color: #797e81;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.like-comment-button input:checked ~ .angry-icon {
+  color: var(--main-color);
+}
+
+.like-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.likes {
+  display: flex;
+  color: #797e81;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+}

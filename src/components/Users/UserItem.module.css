@@ -1,0 +1,63 @@
+.user-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 1rem 0.5rem;
+  width: 100%;
+}
+
+.user-data {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.user-details {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-details img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+}
+
+.user-details h2 {
+  font-size: 1.2rem;
+}
+
+.about {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.95rem;
+}
+
+.follow-button {
+  display: flex;
+  height: fit-content;
+}
+
+.follow-button input {
+  -webkit-appearance: none;
+}
+
+.follow-button-appearance {
+  background-color: var(--main-color);
+  color: white;
+  padding: 0.5rem 2rem;
+  border: 2px solid var(--main-color);
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.follow-button input:checked ~ .follow-button-appearance {
+  background-color: transparent;
+  color: var(--main-color);
+}

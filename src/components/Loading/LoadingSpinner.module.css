@@ -1,0 +1,36 @@
+.loading-spinner {
+  width: 7rem;
+  height: 7rem;
+  background-color: transparent;
+  border-radius: 100%;
+  border: 1rem solid var(--main-color);
+  border-left-color: transparent;
+  border-right-color: transparent;
+  animation: spin 1s ease-in-out infinite;
+}
+.scaler {
+  animation: scale 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

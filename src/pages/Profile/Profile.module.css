@@ -1,0 +1,93 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 2rem 0 1rem 0;
+}
+.user-info img {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 100%;
+}
+
+.user-data {
+  color: #797e81;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.user-data h3 {
+  font-weight: lighter;
+}
+
+.followers-info {
+  cursor: pointer;
+}
+
+.about {
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  font-family: "Roboto";
+  text-align: center;
+  max-width: 90%;
+}
+
+.follow-button {
+  display: flex;
+}
+
+.follow-button input {
+  -webkit-appearance: none;
+}
+
+.follow-button-appearance,
+.edit-button {
+  background-color: var(--main-color);
+  color: white;
+  padding: 0.5rem 2rem;
+  border: 2px solid var(--main-color);
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.follow-button input:checked ~ .follow-button-appearance {
+  background-color: transparent;
+  color: var(--main-color);
+}
+
+.division {
+  margin: 1.5rem auto;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  color: var(--main-color);
+}
+
+.division h2 {
+  padding-right: 0.5rem;
+}
+.division-line {
+  width: 100%;
+  height: 0.2rem;
+  background-color: var(--main-color);
+}
+
+.rants {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}

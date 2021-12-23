@@ -1,0 +1,18 @@
+.rants-list {
+  width: 40rem;
+  max-width: 95%;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.link {
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+.link:hover {
+  color: #aa4144;
+}
