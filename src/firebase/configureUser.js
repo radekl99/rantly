@@ -18,7 +18,7 @@ export const configureUsers = async () => {
       usersExist = true;
       users = snaphot.val();
       userDataExists = users.some(
-        (user) => user.userId === auth.currentUser.uid
+        (user) => user.userId === auth.currentUser?.uid
       );
     }
   });

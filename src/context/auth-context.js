@@ -3,8 +3,11 @@ import React, { useState } from "react";
 
 const AuthContext = React.createContext({
   isLoggedIn: null,
+  isLogoutClicked: null,
   onLogin: null,
   onLogout: null,
+  onLogoutClicked: null,
+  onLoginClicked: null,
   angryIcon: null,
   setAngryIcon: null,
 });
@@ -12,6 +15,7 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [angryIconURL, setAngryIconURL] = useState("");
+  const [isLogoutClicked, setIsLogoutClicked] = useState(false);
 
   const onLogin = () => {
     setIsLoggedIn(true);
@@ -19,6 +23,14 @@ export const AuthContextProvider = (props) => {
 
   const onLogout = () => {
     setIsLoggedIn(false);
+  };
+
+  const onLoginClicked = () => {
+    setIsLogoutClicked(false);
+  };
+
+  const onLogoutClicked = () => {
+    setIsLogoutClicked(true);
   };
 
   const setAngryIcon = async () => {
@@ -33,8 +45,11 @@ export const AuthContextProvider = (props) => {
     <AuthContext.Provider
       value={{
         isLoggedIn: isLoggedIn,
+        isLogoutClicked: isLogoutClicked,
         onLogin: onLogin,
         onLogout: onLogout,
+        onLogoutClicked: onLogoutClicked,
+        onLoginClicked: onLoginClicked,
         angryIcon: angryIconURL,
         setAngryIcon: setAngryIcon,
       }}

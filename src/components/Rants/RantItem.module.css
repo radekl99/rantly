@@ -6,12 +6,14 @@
   border-radius: 20px;
   padding: 1rem 0.5rem;
   width: 100%;
+  position: relative;
 }
 
 .user-data {
   display: flex;
   align-items: center;
   cursor: pointer;
+  width: max-content;
 }
 
 .user-data img {

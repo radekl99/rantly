@@ -113,6 +113,17 @@ const rantsReducer = (state = initialState, action) => {
       postRants(newRantsList);
       return { ...state, rants: newRantsList };
     }
+
+    case "DELETE_RANT": {
+      const newRantsList = state.rants.filter(
+        (rant) => rant.rantId !== action.payload
+      );
+
+      postRants(newRantsList);
+
+      return { ...state, rants: newRantsList };
+    }
+
     case "LIKE_RANT": {
       const newRantsList = [...state.rants];
       const likedRant = newRantsList.find(
@@ -162,6 +173,25 @@ const rantsReducer = (state = initialState, action) => {
 
       return { ...state, rants: newRants };
     }
+
+    case "DELETE_COMMENT": {
+      const commentedRantIndex = state.rants.findIndex(
+        (rant) => rant.rantId === action.payload.rantId
+      );
+
+      const newRants = [...state.rants];
+
+      const newComments = newRants[commentedRantIndex].comments.filter(
+        (comment) => comment.commentId !== action.payload.commentId
+      );
+
+      newRants[commentedRantIndex].comments = newComments;
+
+      postRants(newRants);
+
+      return { ...state, rants: newRants };
+    }
+
     case "LIKE_COMMENT": {
       const newRantsList = [...state.rants];
 

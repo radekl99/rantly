@@ -33,6 +33,7 @@ const Header = () => {
     setShowNav(false);
     signOut(auth);
     authCtx.onLogout();
+    authCtx.onLogoutClicked();
   };
 
   const goToProfileHandler = () => {

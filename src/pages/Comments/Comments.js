@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import RantItem from "../../components/Rants/RantItem";
 import classes from "./Comments.module.css";
 import CommentsList from "../../components/Comments/CommentsList";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -29,6 +29,8 @@ const Comments = () => {
         comment: commentRef.current.value,
       },
     });
+
+    commentRef.current.value = "";
   };
 
   return (

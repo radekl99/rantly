@@ -6,10 +6,16 @@ import { signInUser } from "../../firebase/signInUser";
 import { app } from "../../firebase/firebase";
 import { getRedirectResult, getAuth } from "@firebase/auth";
 import { signInWithGoogle } from "../../firebase/signInWithGoogle";
+import { useContext } from "react";
+import AuthContext from "../../context/auth-context";
+import { useEffect } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const authCtx = useContext(AuthContext);
+
+  useEffect(() => authCtx.onLoginClicked(), [authCtx]);
 
   const auth = getAuth(app);
 

@@ -7,13 +7,15 @@
 }
 
 .rant {
-  width: 95%;
+  width: 40rem;
+  max-width: 95%;
   margin-top: 1.5rem;
 }
 
 .division {
   margin: 1rem auto;
-  width: 90%;
+  width: 45rem;
+  max-width: 90%;
   display: flex;
   align-items: center;
   color: var(--main-color);
@@ -79,4 +81,5 @@
   background-color: var(--main-color);
   color: white;
   font-size: 1.3rem;
+  cursor: pointer;
 }

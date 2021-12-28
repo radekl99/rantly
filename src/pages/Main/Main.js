@@ -24,6 +24,7 @@ const Main = () => {
     });
 
     setAllRantsChecked(true);
+    rantRef.current.value = "";
   };
 
   const areAllRantsChecked = (allRantsChecked) => {

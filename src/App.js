@@ -10,15 +10,13 @@ import Search from "./pages/Search/Search";
 import StartPage from "./pages/StartPage/StartPage";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "./firebase/firebase";
-import { useContext } from "react";
 import AuthContext from "./context/auth-context";
 import { Switch, Route } from "react-router";
 import { useDispatch } from "react-redux";
 import { getDatabase, ref, get } from "firebase/database";
 import { configureUsers } from "./firebase/configureUser";
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 import Loading from "./components/Loading/Loading";
 
 const App = () => {
@@ -33,18 +31,24 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (auth.currentUser && auth.currentUser.displayName) {
+    if (
+      auth.currentUser &&
+      auth.currentUser.displayName &&
+      authCtx.isLoggedIn &&
+      !authCtx.isLogoutClicked
+    ) {
       setIsLoading(true);
 
       const database = getDatabase(app);
 
-      //RANTS FROM DATABASE
-      get(ref(database, "rants")).then((snapshot) => {
-        if (snapshot.exists()) {
-          const rants = snapshot.val();
-          dispatch({ type: "SET_RANTS", payload: { rants: rants } });
-        }
-      });
+      const setRants = async () => {
+        await get(ref(database, "rants")).then((snapshot) => {
+          if (snapshot.exists()) {
+            const rants = snapshot.val();
+            dispatch({ type: "SET_RANTS", payload: { rants: rants } });
+          }
+        });
+      };
 
       const setUsersData = async () => {
         const { users, userData } = await configureUsers();
@@ -54,10 +58,16 @@ const App = () => {
       };
 
       setUsersData();
+      setRants();
     }
-  }, [auth.currentUser, auth.currentUser?.displayName, dispatch]);
+  }, [
+    authCtx.isLoggedIn,
+    auth.currentUser,
+    auth.currentUser?.displayName,
+    authCtx.isLogoutClicked,
+    dispatch,
+  ]);
 
-  //CHECKING IF SOME USER IS LOGGED IN
   onAuthStateChanged(auth, (user) => {
     if (user) {
       authCtx.onLogin();
