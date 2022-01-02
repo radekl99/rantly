@@ -22,15 +22,17 @@ const Comments = () => {
   const commentSubmitHandler = (e) => {
     e.preventDefault();
 
-    dispatch({
-      type: "ADD_COMMENT",
-      payload: {
-        id: rantId,
-        comment: commentRef.current.value,
-      },
-    });
+    if (commentRef.current.value) {
+      dispatch({
+        type: "ADD_COMMENT",
+        payload: {
+          id: rantId,
+          comment: commentRef.current.value,
+        },
+      });
 
-    commentRef.current.value = "";
+      commentRef.current.value = "";
+    }
   };
 
   return (

@@ -16,15 +16,17 @@ const Main = () => {
   const rantSubmitHandler = (e) => {
     e.preventDefault();
 
-    dispatch({
-      type: "ADD_RANT",
-      payload: {
-        rant: rantRef.current.value,
-      },
-    });
+    if (rantRef.current.value) {
+      dispatch({
+        type: "ADD_RANT",
+        payload: {
+          rant: rantRef.current.value,
+        },
+      });
 
-    setAllRantsChecked(true);
-    rantRef.current.value = "";
+      setAllRantsChecked(true);
+      rantRef.current.value = "";
+    }
   };
 
   const areAllRantsChecked = (allRantsChecked) => {
