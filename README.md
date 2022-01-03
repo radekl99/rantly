@@ -1,7 +1,7 @@
 # Rantly
 Live demo: https://rantly-d326f.firebaseapp.com/
 ### Description
-Rantly is Twitter like React app for complaining about everything. In this practice project I wanted to implent social media apps features such us: 
+Rantly is Twitter like React app for complaining about everything. In this practice project I wanted to implement social media apps features such us: 
 - Posting
 - Liking posts
 - Commenting
